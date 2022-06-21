@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Kameron-Regular
+font link: https://fonts.google.com/specimen/Kameron
+font author: Vernon Adams
+font author site: http://sansoxygen.com/
+
+
+icon designer: Claire Jones
+icon designer link: /hivernoir
+        
+{"bg":"transparent","icon-gradient-0":"#041804","font":"#000000","slogan":"#141414"}
+      
