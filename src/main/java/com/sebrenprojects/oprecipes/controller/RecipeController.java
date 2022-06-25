@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,7 @@ import com.sebrenprojects.oprecipes.service.RecipeServiceImpl;
 import com.sebrenprojects.oprecipes.service.RecipeStepServiceImpl;
 import com.sebrenprojects.oprecipes.service.UserServiceImpl;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value ="/recipe")
 public class RecipeController {
@@ -84,12 +86,18 @@ public class RecipeController {
 		return recipeSrvc.findAll();
 	}
 	
+	
 	@PostMapping(value="/add", consumes= {"application/json"}, produces= {"application/json"} )
 	public String addRecipe(@RequestBody Recipe recipe) {		
 		User user = userSrvc.findByEmail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-
+		System.out.println(user);
+		System.out.println(recipe);
+		System.out.println(recipe.getIngredients());
+		System.out.println(recipe.getSteps());
+		
 		user.addRecipe(recipe);
-		recipe.addRecipeStep(recipe.getSteps());	
+		recipe.addRecipeStep(recipe.getSteps());
+//		Set<Ingredient> ingredients = recipe.getIngredients();
 	
 		recipe.addRecipeIngredient(recipe.getIngredients());
 		

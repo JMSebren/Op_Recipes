@@ -13,7 +13,7 @@ class NavBar extends Component {
         this.handleRecipeModal = this.handleRecipeModal.bind(this);
 
         this.state = { 
-            loggedIn: false,
+            loggedIn: this.props.parentState.loggedIn.valueOf(),
             loginIsOpen : false,
             signUpIsOpen: false,
             burgerIsOpen: false,
@@ -59,7 +59,7 @@ class NavBar extends Component {
         // CONDITIONAL RENDERING FOR MENU
         if (burgerOpen) {
             burgerMenu = (
-                <div className="flex flex-col items-end w-32 h-36 bg-white rounded-md absolute top-14 right-4 z-10"
+                <div className="absolute z-10 flex flex-col items-end w-32 bg-white rounded-md h-36 top-14 right-4"
                     onMouseLeave={ () => this.handleOpenBurgerMenu()}
                 >
                     <Link to="/profile" state={{ componentType: 'profile' }} className="text-xl">Profile</Link>
@@ -77,25 +77,25 @@ class NavBar extends Component {
         if (loggedIn) {
             // DISPLAY FOR WHEN USER IS LOGGED IN - INCLUDES SEARCH BAR, NEW RECIPE BUTTON, AND A MENU FOR OTHER LINKS
             loggedInNav = (
-                <nav className="flex flex-row justify-evenly mt-2 relative">
+                <nav className="relative flex flex-row mt-2 justify-evenly">
                     
                     <div id="nav-loggedin-left-elements" className="flex flex-row w-48 space-x-8 align-middle">
                         <img src={logo} alt="logo" className="ml-4 "></img>
                         <Link
                             to="/"
-                            className="self-center w-20 h-8 mr-2 bg-gray-900 text-center leading-8 text-neutral-100 rounded-full  "
+                            className="self-center w-20 h-8 mr-2 leading-8 text-center bg-gray-900 rounded-full text-neutral-100 "
                             type="button"
                         >                            
                             Home                       
                         </Link>
                     </div>
                     
-                    <div id="nav-searchBar" className="grow h-8 bg-gray-200 rounded-full self-center">
+                    <div id="nav-searchBar" className="self-center h-8 bg-gray-200 rounded-full grow">
                         <input type="text" placeholder="Search" className="h-8 ml-4 bg-gray-200 rounded-full" ></input>
                     </div>
                     <div id="nav-loggedin-right-elements" className="flex flex-row self-center mx-4 space-x-6">                        
                         <button 
-                            className="bg-neutral-200 rounded-full w-8 h-8"
+                            className="w-8 h-8 rounded-full bg-neutral-200"
                             type="button"
                             onClick={ () => this.handleRecipeModal()}
                         >
@@ -103,7 +103,7 @@ class NavBar extends Component {
                         </button>
                         <p className="text-2xl">{this.props.parentState.currentUser}</p>
                         <button 
-                            className=" bg-neutral-200 rounded-full w-8 h-8"
+                            className="w-8 h-8 rounded-full  bg-neutral-200"
                             type="button"
                             onMouseOver={ () => this.handleOpenBurgerMenu()}
                             
@@ -119,16 +119,16 @@ class NavBar extends Component {
             loggedInNav = (
                 <nav className="flex flex-row justify-between mt-2">
                     <img src={title_and_logo} alt="logo" className="ml-4 "></img>
-                    <div id="nav-notin-right-elements" className="mr-12 self-center">
+                    <div id="nav-notin-right-elements" className="self-center mr-12">
                         <button 
-                            className="bg-gray-900 text-neutral-100 rounded-full mr-2 w-20 h-8"
+                            className="w-20 h-8 mr-2 bg-gray-900 rounded-full text-neutral-100"
                             type="button"
                             onClick={ () => this.handleLoginClick()} 
                         >                            
                             Log In                           
                         </button>
                         <button 
-                            className="bg-red-700 text-neutral-100 rounded-full w-20 h-8"
+                            className="w-20 h-8 bg-red-700 rounded-full text-neutral-100"
                             type="button"
                             onClick={ () => this.handleSignUpClick()} 
                         >

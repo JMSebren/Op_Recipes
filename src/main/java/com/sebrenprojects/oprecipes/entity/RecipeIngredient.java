@@ -35,7 +35,7 @@ public class RecipeIngredient {
 	@JoinColumn(name="ingredient_id")
 	private Ingredient ingredient;
 
-	private int quantity;
+	private String quantity;
 	
 	@ManyToOne
 	@JoinColumn(name="unit_id")

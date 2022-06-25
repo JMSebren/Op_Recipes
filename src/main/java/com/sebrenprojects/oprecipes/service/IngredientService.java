@@ -15,6 +15,10 @@ public interface IngredientService{
 	
 	public Ingredient findByName(String name);
 	
+	public Boolean existsIngredientByName(String name);
+	
 	public List<Ingredient> findAll();
+	
+	public Ingredient addIngredient(String name);
 	
 }

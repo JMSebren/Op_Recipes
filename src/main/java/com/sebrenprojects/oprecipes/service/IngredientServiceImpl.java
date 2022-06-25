@@ -25,6 +25,8 @@ public class IngredientServiceImpl implements IngredientService {
 		return repository.findByName(name);
 	}
 	
+	
+	
 	@Override
 	public Ingredient getReferenceById(Long id) {
 		return repository.getReferenceById(id);
@@ -35,20 +37,21 @@ public class IngredientServiceImpl implements IngredientService {
 		return repository.findAll();
 	}
 	
-	public void addIngredient(String name) {	
+	public Ingredient addIngredient(String name) {	
+		if (existsIngredientByName(name)) {
+			return findByName(name);
+		}
+		
 		Ingredient newIngredient = new Ingredient();
 		newIngredient.setName(name);		
 
-		repository.save(newIngredient);
+		return repository.save(newIngredient);
 	}
-//	public void addIngredient(String name, String type) {
-//		IngredientType iType = IngredientType.valueOf(type);
-//		
-//		Ingredient newIngredient = new Ingredient();
-//		newIngredient.setName(name);		
-//		newIngredient.setType(iType);
-//		
-//		repository.save(newIngredient);
-//	}
+
+
+	@Override
+	public Boolean existsIngredientByName(String name) {
+		return repository.existsIngredientByName(name);
+	}
 }
 

@@ -3,9 +3,7 @@ import axios from 'axios';
 import {
 	BrowserRouter as Router,
 	Routes,
-	Switch,
 	Route,
-	Link
 } from'react-router-dom';
 import NavBar from './components/navbar';
 import authToken from './components/authToken.js';
@@ -17,11 +15,6 @@ import About from './components/about.js';
 import Login from './components/loginModal.js';
 import SignUp from './components/signUpModal.js';
 import RecipeModal from './components/recipeModal.js';
-
-// import './App.css';
-
-// const token = document.querySelector('meta[name="_csrf"]').textContent;
-// const header = document.querySelector('meta[name="_csrf_header"]').textContent;
 
 class App extends Component{
 	
@@ -43,12 +36,16 @@ class App extends Component{
 	
 	componentDidMount() {
 		const token = localStorage.getItem('access_token');
-		if (token) {
-			axios.defaults.headers.common["Authorization"] = `${token}`;
+		console.log(token);
+		if (token != null) {
+			
+			axios.defaults.headers.common["Authorization"] = token;
 			this.setState({loggedIn: true});
 
 			this.setState({currentUser: localStorage.getItem('username')});
-		} 
+		} else if (token == null) {
+			this.setState({loggedIn: false});
+		}
 	}
 	
 	handleLoginChange() {
@@ -76,7 +73,7 @@ render () {
 	return (
 	
 				<Router>
-					<div className="flex flex-col min-h-screen min-w-full relative z-0 ">
+					<div className="relative z-0 flex flex-col min-w-full min-h-screen ">
 						< NavBar parentState = {this.state} setParentState={(state) => this.setState(state)}/>
 						{this.state.loginIsOpen && < Login setLoginIsOpen={this.handleLoginModal} updateLogin={this.handleLoginChange} />}
 						{this.state.signUpIsOpen && < SignUp setSignUpIsOpen={this.handleSignUpModal}  />}

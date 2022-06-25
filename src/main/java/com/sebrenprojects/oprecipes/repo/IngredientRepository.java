@@ -15,5 +15,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 	Ingredient getReferenceById(Long id);
 	
 	Ingredient findByName(String name);
+	
+	public Boolean existsIngredientByName(String name);
 
 }
