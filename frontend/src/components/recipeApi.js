@@ -39,7 +39,9 @@ export const getUnits = () => axios ({
 export const addIngredient = (name) => axios ({
     url: `${BASE_URL_INGREDIENTS}/add`,
     method: 'post',
-    data: name,
+    data: {
+        "name": name
+    },
     response: 'json'
 })
 

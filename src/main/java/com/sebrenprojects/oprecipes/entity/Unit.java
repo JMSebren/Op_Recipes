@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -39,6 +40,7 @@ public class Unit{
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
+	@JsonIgnore
 	@OneToMany(mappedBy="unit", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	Set<RecipeIngredient> recipeIngredient = new HashSet<RecipeIngredient>();
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,8 @@ import com.sebrenprojects.oprecipes.service.UnitServiceImpl;
 @RestController
 @RequestMapping(value = "/ingredients")
 public class IngredientController {
+	
+	private static Logger log = LoggerFactory.getLogger(IngredientController.class);
 	
 	@Autowired 
 	IngredientServiceImpl ingredientSrvc;	
@@ -58,15 +62,16 @@ public class IngredientController {
 	
 	@GetMapping("/all")
 	public List<Ingredient> getAllIngredients() {
+		log.info("Getting all ingredients");
 		return ingredientSrvc.findAll();
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addNewIngredient(@RequestBody String name) {
+	public ResponseEntity<?> addNewIngredient(@RequestBody Ingredient ingredient) {
 		JSONObject jsonObject = new JSONObject();
-		System.out.println(name);
+		System.out.println(ingredient.getName());
 		
-		Ingredient ingredient = ingredientSrvc.addIngredient(name);
+		ingredient = ingredientSrvc.addIngredient(ingredient.getName());
 		try {
 			jsonObject.put("id", ingredient.getId());
 			jsonObject.put("name", ingredient.getName());
@@ -86,6 +91,7 @@ public class IngredientController {
 	
 	@GetMapping("/allUnits")
 	public List<Unit> getAllUnits() {
+		log.info("Getting all units");
 		return unitSrvc.findAll();
 	}
 }

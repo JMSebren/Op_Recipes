@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -86,6 +88,7 @@ public class Ingredient{
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
+	@JsonIgnore
 	@OneToMany(mappedBy="ingredient", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	Set<RecipeIngredient> recipeIngredients = new HashSet<RecipeIngredient>();
 	

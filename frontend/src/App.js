@@ -6,8 +6,6 @@ import {
 	Route,
 } from'react-router-dom';
 import NavBar from './components/navbar';
-import authToken from './components/authToken.js';
-
 import Home from './components/home.js';
 import Results from './components/results.js';
 import Page from './components/page_template.js';
@@ -26,20 +24,21 @@ class App extends Component{
 			loginIsOpen: false,
 			signUpIsOpen: false,
 			recipeIsOpen: false,
-			currentUser: ""			
+			currentUser: localStorage.getItem('username')			
 		}
 		this.handleLoginChange =  this.handleLoginChange.bind(this);
 		this.handleLoginModal = this.handleLoginModal.bind(this);
 		this.handleSignUpModal = this.handleSignUpModal.bind(this);
 		this.handleRecipeModal = this.handleRecipeModal.bind(this);
+		this.handleUserUpdate = this.handleUserUpdate.bind(this);
 	}
 	
 	componentDidMount() {
 		const token = localStorage.getItem('access_token');
-		console.log(token);
 		if (token != null) {
 			
 			axios.defaults.headers.common["Authorization"] = token;
+			// axios.defaults.headers.common["Content-Type"] = "application/json";
 			this.setState({loggedIn: true});
 
 			this.setState({currentUser: localStorage.getItem('username')});
@@ -50,6 +49,10 @@ class App extends Component{
 	
 	handleLoginChange() {
 		this.setState({loggedIn: !this.state.loggedIn.valueOf()});
+		setTimeout( () => {
+			this.handleUserUpdate();
+		}, 200 );
+		
 	}
 
 	handleLoginModal() {
@@ -57,7 +60,7 @@ class App extends Component{
 	}
 
 	handleUserUpdate() {
-		this.setState({currentUser: this.state.currentUser.valueOf()});
+		this.setState({currentUser: localStorage.getItem('username')});
 	}
 
 	handleSignUpModal() {
@@ -75,7 +78,9 @@ render () {
 				<Router>
 					<div className="relative z-0 flex flex-col min-w-full min-h-screen ">
 						< NavBar parentState = {this.state} setParentState={(state) => this.setState(state)}/>
-						{this.state.loginIsOpen && < Login setLoginIsOpen={this.handleLoginModal} updateLogin={this.handleLoginChange} />}
+						{this.state.loginIsOpen && < Login 
+							setLoginIsOpen={this.handleLoginModal} 
+							updateLogin={this.handleLoginChange} />}
 						{this.state.signUpIsOpen && < SignUp setSignUpIsOpen={this.handleSignUpModal}  />}
 						{this.state.recipeIsOpen && < RecipeModal setRecipeIsOpen={this.handleRecipeModal}  />}
 						<Routes>

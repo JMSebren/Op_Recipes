@@ -1,25 +1,6 @@
 import axios from 'axios';
 
-// const authenticateUser = (email, password) => async (dispatch) {
-
-// }
-
 const BASE_URL_AUTH = "http://localhost:8080/api/auth";
-
-const initialState = {
-    "username": "",
-    "email": "",
-    "password": "",
-    "role": "USER"
-}
-
-const testLogin = {
-    "email": "testuseremail@testuser.com",
-    "password": "testuserpassword"
-}
-
-// axios.get('something')
-//     .then( (res) => console.log(res) );
 
 //  USER LOGIN
 export const authUser = (email, password) =>axios({
@@ -33,7 +14,8 @@ export const authUser = (email, password) =>axios({
 
 } )
 
-// USER LOGOUT
+// USER LOGOUT - WILL BE UPDATED TO BOTH CLEAR LOCAL STORAGE AND SEND REQUEST TO API TO CLEAR
+//   THE SECURITY CONTEXT AND ELIMINATE USER'S REFRESH TOKENS.
 export const logout = () => {
     localStorage.clear();
 }
