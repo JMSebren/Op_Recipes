@@ -1,7 +1,5 @@
 package com.sebrenprojects.oprecipes.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +15,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
+
+// POJO FOR USER AUTHORITY ROLES.
+
 @Table(name="role")
-public class Role implements Serializable{
+public class Role {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

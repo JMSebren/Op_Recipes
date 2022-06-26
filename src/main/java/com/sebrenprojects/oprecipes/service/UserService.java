@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.sebrenprojects.oprecipes.entity.User;
 
+//BASIC INTERFACE FOR USER_SERVICE
+
 public interface UserService {
 
 	User findById(Long id);

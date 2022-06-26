@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.sebrenprojects.oprecipes.entity.Role;
 
+// REPO FOR USER ROLES.
+
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 

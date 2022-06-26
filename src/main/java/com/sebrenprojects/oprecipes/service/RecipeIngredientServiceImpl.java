@@ -9,6 +9,8 @@ import com.sebrenprojects.oprecipes.entity.Recipe;
 import com.sebrenprojects.oprecipes.entity.RecipeIngredient;
 import com.sebrenprojects.oprecipes.repo.RecipeIngredientRepository;
 
+//METHOD IMPLEMENTATIONS FOR RECIPE_INGREDIENT SERVICE. NOTHING HERE YET AS IT IS NOT USED AT THIS TIME.
+
 @Service
 public class RecipeIngredientServiceImpl implements RecipeIngredientService{
 

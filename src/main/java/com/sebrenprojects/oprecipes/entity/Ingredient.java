@@ -5,10 +5,9 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+//import javax.persistence.EnumType;
+//import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +17,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,10 +35,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
+// POJO FOR INGREDIENTS THAT CAN BE USED IN RECIPES. WILL EVENTUALLY MAKE USE OF THE INGREDIENTTYPE ENUM
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name="ingredient")
 public class Ingredient{
 
-	// types could be enforced on the front-end, but it seems more clear to define accepted values on the back-end
+	// currently unused. will be utilized at a later point for searching and sorting methods
 	public enum IngredientType {
 		PROTEIN("PROTEIN"),
 		VEGETABLE("VEGETABLE"),
@@ -81,13 +87,9 @@ public class Ingredient{
 	@Column(unique=true)
 	private String name;
 	
-//	@NonNull
-//	@Enumerated(EnumType.STRING)
-//	@Column(name="ingredient_type")
-//	private IngredientType type;
-	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonIgnore
 	@OneToMany(mappedBy="ingredient", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	Set<RecipeIngredient> recipeIngredients = new HashSet<RecipeIngredient>();
@@ -99,11 +101,4 @@ public class Ingredient{
 			ingredient.setIngredient(this);
 		}				
 	}
-
-	@Override
-	public String toString() {
-		return "Ingredient [id=" + id + ", name=" + name + "]";
-	}
-	
-	
 }

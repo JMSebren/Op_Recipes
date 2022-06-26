@@ -1,13 +1,10 @@
 package com.sebrenprojects.oprecipes.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.codehaus.jettison.json.JSONObject;
 
 import com.sebrenprojects.oprecipes.entity.Ingredient;
-import com.sebrenprojects.oprecipes.entity.Ingredient.IngredientType;
 
+// BASIC INTERFACE FOR INGREDIENT_SERVICE
 
 public interface IngredientService{
 	

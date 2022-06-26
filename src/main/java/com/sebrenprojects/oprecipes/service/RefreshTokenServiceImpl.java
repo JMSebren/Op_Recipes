@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sebrenprojects.oprecipes.controller.AuthController;
 import com.sebrenprojects.oprecipes.entity.RefreshToken;
 import com.sebrenprojects.oprecipes.exception.TokenRefreshException;
 import com.sebrenprojects.oprecipes.repo.RefreshTokenRepository;
 import com.sebrenprojects.oprecipes.repo.UserRepository;
+
+//METHOD IMPLEMENTATIONS FOR REFRESH_TOKEN SERVICE
 
 @Service
 public class RefreshTokenServiceImpl implements RefreshTokenService {

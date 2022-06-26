@@ -12,13 +12,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Data
-
 @Entity
+
+// POJO FOR THE REFRESH TOKEN. TOKEN IS USED TO DETERMINE IF A USER NEEDS TO LOGIN AGAIN
+
 @Table(name="refreshtoken")
 public class RefreshToken {
 	

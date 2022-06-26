@@ -5,6 +5,8 @@ import java.util.List;
 import com.sebrenprojects.oprecipes.entity.Recipe;
 import com.sebrenprojects.oprecipes.entity.RecipeIngredient;
 
+//BASIC INTERFACE FOR RECIPE_INGREDIENT_SERVICE
+
 public interface RecipeIngredientService {
 
 	public RecipeIngredient findById(Long id); 

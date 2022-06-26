@@ -19,6 +19,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 
+// VALIDATES JWT'S RECEIVED IN REQUESTS. ALL REQUESTS REQUIRE A TOKEN, SO IS RUN ON EVERY RECEIVED REQUEST.
+
 public class JwtTokenFilter extends OncePerRequestFilter{
 
 	private static Logger log = LoggerFactory.getLogger(JwtTokenFilter.class);
@@ -33,9 +35,12 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		log.info("JwtTokenFilter : doFilterInternal");
+		// PULLS THE TOKEN FROM THE AUTHORIZATION HEADER IN THE REQUEST
 		String token = request.getHeader("Authorization");
 		log.info(token);
 		if (token != null) {
+			// RETRIEVES THE CLAIM FROM THE TOKEN, CONFIRMS THE AUTHENTICATION, AND SETS THE
+			// SECURITY CONTEXT WITH THAT AUTHENTICATION.
 			try {
 				Claims claims = tokenProvider.getClaimsFromToken(token);
 				if(!claims.getExpiration().before(new Date())) {
@@ -45,6 +50,8 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 					}
 				}
 			} catch (ExpiredJwtException e) {
+				// RETURNS AN ERROR MESSAGE IF THE TOKEN IS EXPIRED. THE F/E CAN USE THAT TO
+				// QUEUE IN A REQUEST FOR A NEW TOKEN.
 				log.error("JWT token is expired: {}", e.getMessage());
 				try {
 					SecurityContextHolder.clearContext();

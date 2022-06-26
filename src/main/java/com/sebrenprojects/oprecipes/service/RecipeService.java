@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.sebrenprojects.oprecipes.entity.Recipe;
 
+//BASIC INTERFACE FOR RECIPE_SERVICE
+
 public interface RecipeService {
 
 	Recipe findById(Long id);
@@ -12,7 +14,10 @@ public interface RecipeService {
 	
 	List<Recipe> findAll();
 	
+	List<Recipe> findAllByUserId(Long id);
+	
 	void addRecipe(Recipe newRecipe);
 	
 	int deleteRecipe(Long id);
+	
 }

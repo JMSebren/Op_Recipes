@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { addRecipe, getIngredients, getUnits, addIngredient } from './recipeApi';
+import { addRecipe, 
+         getIngredients, 
+         getUnits, 
+         addIngredient,
+         getByUser } from './recipeApi';
 import nomad from '../assets/cyber_nomad.png';
 
  const RecipeModal = ({ setRecipeIsOpen }) => {
@@ -105,8 +109,7 @@ import nomad from '../assets/cyber_nomad.png';
         setData({ ...data, [name]: value });
     }
 
-    // UPDATES STATE OF CURRINDEX TO THE PASSED INVALUE THEN READS VALUES TO DETERMINE WHICH UPDATE TO MAKE
-    // DONE THIS WAY TO ALLOW FOR A BIT MORE CLEAR DELINEATION BETWEEN SECTIONS
+    // TAKES VALUES FROM DYNAMIC INPUTS AND USES INDEX/CURRINDEX TO DETERMINE WHICH VALUE TO READ/WRITE
     const handleSectionValueChange = (e, index, section) => {
         setCurrIndex(index);
         let temp;
@@ -139,18 +142,13 @@ import nomad from '../assets/cyber_nomad.png';
         }
     }
 
-    // UPDATES DATA WHEN THE STATE IT WATCHES GETS UPDATED
-    // useEffect ENSURES THAT DATA IS GETTING THE CURRENT VALUES
+    // useEFFECT BLOCK - MONITORS CHANGES TO INDIVIDUAL ITEMS AND UPDATES COLLECTIONS WITH THE MOST RECENT VALUES
 
     useEffect( () => {
         let temp = ingredientArray;
         temp[currIndex] = ingredient;
         setIngredientArray(temp);
     } , [ingredient] )
-
-    useEffect( () => {
-        console.log(data);
-    }, [data] );
 
     useEffect( () => {
         let temp = ingredientArray[currIndex];
@@ -163,6 +161,11 @@ import nomad from '../assets/cyber_nomad.png';
         temp[currIndex] = step;
         setStepArray(temp);
     } , [step] )
+
+    // THIS ONE IS JUST FOR MONITORING DURING TESTING. KEEPING IT IN FOR ONGOING WORK.
+    useEffect( () => {
+        console.log(data);
+    }, [data] );
 
     // SWITCHES THE CURRENT SECTION WHEN THE NEXT BUTTON IS PUSHED
     const handleChangeSection = () => {
@@ -178,13 +181,14 @@ import nomad from '../assets/cyber_nomad.png';
         }
     }
 
+    // FIRES ON PRESS OF SUBMIT. CALLS GET/SET ID TO UPDATE ID'S OF ITEMS
+    // AND TO MERGE THE UPDATED ITEMS INTO THEIR COLLECTION, THEN JOINS COLLECTIONS
+    // TO THE DATA MODEL, AND CALLS RESPONSE() TO SEND THE POST CALL.
     const handleSubmit = (e) => {
         e.preventDefault();
+        // keeping these in for monitoring during dev work
         console.log(`Entering handleSubmit`);
-        // updateRecipe();
-        // document.querySelector("#recipe").reset();
-        // response();
-        console.log(data);
+        console.log(unitList);
         console.log(ingredientList);
 
         ingredientArray.forEach( (ingredient, index) => {
@@ -197,10 +201,11 @@ import nomad from '../assets/cyber_nomad.png';
         });
         setIsReady(prevState => !prevState);
 
+        setTimeout(100);
         response();
     }
 
-    // CHECK IF PROVIDED VALUE IS IN THE INGREDIENTLIST. SAVE THE ITEM ID AND INDEX IF FOUND, OR SET VALUES TO -1.
+    // CHECK IF PROVIDED VALUE IS IN THE INGREDIENTLIST. SAVE THE ITEM ID AND INDEX IF FOUND.
     // SEND VALUES TO SETID TO MAKE ANY NEEDED API CALLS AND UPDATE STATE.
     const getId = (item, itemIndex, itemType) => {
         let index;
@@ -226,11 +231,12 @@ import nomad from '../assets/cyber_nomad.png';
         let temp = ingredientArray;
         let calledIngredientApi = false;
 
+        // called if a new ingredient is added. replaces ingredientList with an updated list
         const updateIngredientList = async() => {
             getIngredients()
                 .then( res => setIngredientList(res.data));
         }
-        
+        // called if the ingredient does not currently list in the cached values list
         const addNewIngredient = async(itemName) => {
             addIngredient(itemName)
                 .then( res => {
@@ -270,8 +276,9 @@ import nomad from '../assets/cyber_nomad.png';
     const handleClose = () => {
         setRecipeIsOpen(false);
     }
-
-    
+ 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // CONDITIONAL RENDERING FOR NEXT BUTTON AND SUBMIT BUTTON
     let proceedButton;

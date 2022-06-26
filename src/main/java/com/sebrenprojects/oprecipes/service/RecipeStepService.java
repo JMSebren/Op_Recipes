@@ -5,6 +5,8 @@ import java.util.List;
 import com.sebrenprojects.oprecipes.entity.Recipe;
 import com.sebrenprojects.oprecipes.entity.RecipeStep;
 
+//BASIC INTERFACE FOR RECIPE_STEP_SERVICE
+
 public interface RecipeStepService {
 
 	public void addRecipeStep(RecipeStep step);

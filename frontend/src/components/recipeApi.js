@@ -36,6 +36,15 @@ export const getUnits = () => axios ({
     response: 'json'
 })
 
+export const getByUser = (id) => axios({
+    url: `${BASE_URL_INGREDIENTS}/all`,
+    method: 'get',
+    params: {
+        id: id
+    },
+    response: 'json'
+})
+
 export const addIngredient = (name) => axios ({
     url: `${BASE_URL_INGREDIENTS}/add`,
     method: 'post',

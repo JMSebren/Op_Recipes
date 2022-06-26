@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.sebrenprojects.oprecipes.entity.Role;
 import com.sebrenprojects.oprecipes.repo.RoleRepository;
 
+//METHOD IMPLEMENTATIONS FOR ROLE SERVICE
+
 @Service
 public class RoleServiceImpl implements RoleService{
 	

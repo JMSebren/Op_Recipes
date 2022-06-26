@@ -82,8 +82,20 @@ public class RecipeController {
 	}
 	
 	@GetMapping(value="/all")
-	public @ResponseBody List<Recipe> findAll() {
+	public List<Recipe> findAll() {
 		return recipeSrvc.findAll();
+	}
+	
+	@GetMapping(value="/all", params= {"id"})
+	public List<Recipe> findAllByUser(@RequestParam Long id) {
+		try {
+			List<Recipe> recipes = recipeSrvc.findAllByUserId(id);
+			return recipes;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	

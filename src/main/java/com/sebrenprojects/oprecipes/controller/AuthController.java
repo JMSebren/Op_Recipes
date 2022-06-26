@@ -1,12 +1,5 @@
 package com.sebrenprojects.oprecipes.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -33,7 +26,9 @@ import com.sebrenprojects.oprecipes.service.RefreshTokenServiceImpl;
 import com.sebrenprojects.oprecipes.service.RoleServiceImpl;
 import com.sebrenprojects.oprecipes.service.UserServiceImpl;
 
-@CrossOrigin(origins = "http://localhost:3000")
+// MANAGES USER AUTHENTICATION USING JSON WEB TOKEN TO VERIFY USER CREDENTIALS.
+
+@CrossOrigin(origins = "http://localhost:3000")  // set for testing from react launched via npm
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -59,6 +54,8 @@ public class AuthController {
 		ADMIN, USER
 	}
 	
+	// CONFIRMS GIVEN USER CREDENTIALS ARE CORRECT AND RETURNS AN OBJECT W/ JWT ACCESS AND REFRESH TOKENS
+	// RETURNS UNAUTHORIZED IF THE USER DATA IS INVALID.
 	@PostMapping(value="/login", consumes= {"application/json"}, produces= {"application/json"} )
 	public ResponseEntity<String> login(@RequestBody User user) {
 		log.info("AuthController : login start");
@@ -97,6 +94,7 @@ public class AuthController {
 		return null;
 	}
 	
+	// ADDS NEW USER DATA TO THE DATABASE
 	@PostMapping(value="/register", consumes= {"application/json"}, produces= {"application/json"} )
 	public ResponseEntity<String> register(@RequestBody User user) {
 		log.info("UserServiceImpl : signup");
@@ -119,6 +117,8 @@ public class AuthController {
 		}
 	}
 	
+	// RECEIVES A REQUEST FOR A NEW REFRESH TOKEN, VALIDATES IF THE CURRENT TOKEN IS EXPIRED.
+	// IF EXPIRED, RETURNS A NEW TOKEN SET. RETURNS UNAUTHORIZED IF NO TOKEN IS FOUND.
 	@PostMapping(value="/refreshtoken", consumes= {"application/json"}, produces= {"application/json"})
 	public ResponseEntity<?> refreshToken(@RequestBody TokenRefreshRequest request) {
 		log.info("RefreshToken : refresh");
@@ -140,63 +140,6 @@ public class AuthController {
 						return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
 					})
 					.orElseThrow( () -> new TokenRefreshException(requestRefreshToken, "Refresh token is not in database.") );
-	}
-	
+	}	
 }
-//
-//	@Autowired
-//	UserRepository userRepo;
-//	
-//	@Autowired
-//	LoginRepository loginRepo;
-//	
-//	@Autowired
-//	JwtUtils jwtUtils;
-//	
-//	@PostMapping("/login")
-//	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-//		
-//		Authentication authentication = authenticationManager.authenticate(
-//				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-//		
-//		SecurityContextHolder.getContext().setAuthentication(authentication);
-//		String jwt = jwtUtils.generateJwtToken(authentication);
-//		
-//		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-//		List<String> roles = userDetails.getAuthorities().stream()
-//				.map(item -> item.getAuthority())
-//				.collect(Collectors.toList());
-//		
-//		return ResponseEntity.ok(new JwtResponse(
-//								jwt,
-//								userDetails.getId(),
-//								userDetails.getUsername(),
-//								userDetails.getEmail,
-//								roles));
-//	}
-//	
-//	@PostMapping("/signup")
-//	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-//		// Returns error message if username or email are already in use
-//		if (userRepo.existsByUsername(signUpRequest.getUsername())) {
-//			return ResponseEntity
-//					.badRequest()
-//					.body(new MessageResponse("Error: Username is already taken!"));
-//		}
-//		
-//		if (userRepo.existsByEmail(signUpRequest.getEmail())) {
-//			return ResponseEntity
-//					.badRequest()
-//					.body(new MessageResponse("Error: Email is already in use!"));
-//		}
-//		
-//		// Create the new account
-//		User user = new User(signUpRequest.getUsername(),
-//				signUpRequest.getEmail(),
-//				encoder.encode(signUpRequest.getPassword()));
-//		
-//		Set<String> strRoles = signUpRequest.getRole();
-//		Set<Role> roles = new HashSet<>();
-//	}
-//	
-//}
+

@@ -1,18 +1,15 @@
 package com.sebrenprojects.oprecipes.entity;
 
 import javax.persistence.JoinColumn;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +17,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
+
+// POJO FOR COMPLETE INGREDIENT LINES IN A RECIPE. CONTAINS THE INGREDIENT AS WELL AS
+// THE TOTAL QUANTITY OF A PARTICULAR UNIT USED IN THE RECIPE.
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name="recipe_ingredient")
 public class RecipeIngredient {
 

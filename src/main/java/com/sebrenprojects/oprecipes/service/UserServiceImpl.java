@@ -6,17 +6,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sebrenprojects.oprecipes.entity.User;
 import com.sebrenprojects.oprecipes.repo.UserRepository;
 
+//METHOD IMPLEMENTATIONS FOR USER SERVICE. MOSTLY USED BY THE AUTH CONTROLLER.
+
 @Service
 public class UserServiceImpl implements UserService {
 
 	private static Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
-	// note for later: can use return "redirect:/"; in an http statement to send the user back to a certain page
 	
 	@Autowired
 	UserRepository repository;

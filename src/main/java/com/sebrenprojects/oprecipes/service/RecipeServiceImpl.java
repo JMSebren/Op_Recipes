@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.sebrenprojects.oprecipes.entity.Recipe;
 import com.sebrenprojects.oprecipes.repo.RecipeRepository;
 
+//METHOD IMPLEMENTATIONS FOR RECIPE SERVICE
+
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
@@ -24,9 +26,11 @@ public class RecipeServiceImpl implements RecipeService{
 		return repository.getReferenceById(id);
 	}
 	
+	
 	@Override
 	public Recipe findByName(String name) {
 		log.info("RecipeSrvc findByName: Function entered. Initiating repository.findByName ");
+		
 		
 		Recipe recipe = repository.findByName(name);
 		recipe.setUser(recipe.getUser());
@@ -42,7 +46,18 @@ public class RecipeServiceImpl implements RecipeService{
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 		}
-		return repository.findAll();
+		return null;
+	}
+	
+	@Override
+	public List<Recipe> findAllByUserId(Long id) {
+		try {
+			List<Recipe> recipes = repository.findByUserId(id);
+			return recipes;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@Override
@@ -50,17 +65,18 @@ public class RecipeServiceImpl implements RecipeService{
 		repository.save(newRecipe);
 	}
 	
+	// ATTEMPTS TO DELETE THE REQUESTED RECIPE. RETURNS AN INTEGER TO INDICATE OPERATION SUCCESS.
 	@Override
 	public int deleteRecipe(Long id) {
 		log.info("RecipeSrvc deleteRecipe: Function entered. Initiating repository.deleteById ");
 		try {
 			repository.deleteById(id);
 		} catch(IllegalArgumentException e) {
-			log.info("RecipeSrvc findByName err: Recipe not found, returning error. ");
+			log.info("RecipeSrvc findByName err(IllegalArguments): Recipe not found, returning error. ");
 			e.printStackTrace();
 			return 0;
 		} catch (EmptyResultDataAccessException e) {
-			log.info("RecipeSrvc findByName err: Recipe not found, returning error. ");
+			log.info("RecipeSrvc findByName err(EmptyResult): Recipe not found, returning error. ");
 			e.printStackTrace();
 			return 0;
 		}

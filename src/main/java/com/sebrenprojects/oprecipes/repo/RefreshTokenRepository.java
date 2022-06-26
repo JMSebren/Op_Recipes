@@ -3,10 +3,11 @@ package com.sebrenprojects.oprecipes.repo;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import com.sebrenprojects.oprecipes.entity.RefreshToken;
 import com.sebrenprojects.oprecipes.entity.User;
+
+// REPO FOR REFRESH_TOKENS
 
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long> {
 

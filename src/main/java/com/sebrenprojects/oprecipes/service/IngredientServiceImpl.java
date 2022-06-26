@@ -1,18 +1,14 @@
 package com.sebrenprojects.oprecipes.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.sebrenprojects.oprecipes.entity.Ingredient;
-import com.sebrenprojects.oprecipes.entity.Ingredient.IngredientType;
 import com.sebrenprojects.oprecipes.repo.IngredientRepository;
+
+//METHOD IMPLEMENTATIONS FOR INGREDIENT SERVICE
 
 @Service
 public class IngredientServiceImpl implements IngredientService {
@@ -25,8 +21,6 @@ public class IngredientServiceImpl implements IngredientService {
 		return repository.findByName(name);
 	}
 	
-	
-	
 	@Override
 	public Ingredient getReferenceById(Long id) {
 		return repository.getReferenceById(id);
@@ -37,17 +31,15 @@ public class IngredientServiceImpl implements IngredientService {
 		return repository.findAll();
 	}
 	
+	// RETURNS AN INGREDIENT IF IT ALREADY EXISTS, OTHERWISE SAVES A NEW INGREDIENT
 	public Ingredient addIngredient(String name) {	
 		if (existsIngredientByName(name)) {
 			return findByName(name);
-		}
-		
+		}		
 		Ingredient newIngredient = new Ingredient();
 		newIngredient.setName(name);		
-
 		return repository.save(newIngredient);
 	}
-
 
 	@Override
 	public Boolean existsIngredientByName(String name) {

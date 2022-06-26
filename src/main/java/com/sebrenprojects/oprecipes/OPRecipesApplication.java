@@ -4,23 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.init.DatabasePopulator;
-import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.sebrenprojects.oprecipes.entity.User;
 import com.sebrenprojects.oprecipes.service.RoleServiceImpl;
 import com.sebrenprojects.oprecipes.service.UserServiceImpl;
 
-
-//@EnableWebMvc
 @SpringBootApplication
 @EnableJpaRepositories("com.sebrenprojects.oprecipes.repo")
 public class OPRecipesApplication implements CommandLineRunner {
@@ -35,9 +25,10 @@ public class OPRecipesApplication implements CommandLineRunner {
 		SpringApplication.run(OPRecipesApplication.class, args);
 	}
 
+	// USED TO MAKE A DEFAULT USER WHEN THE DB IS RELOADED. MOSTLY FOR DEV PURPOSES.
 	@Override	
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+
 		if (userSrvc.findAll().isEmpty()) {
 			User testUser = new User();
 			

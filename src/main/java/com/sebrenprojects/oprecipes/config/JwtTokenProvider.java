@@ -20,6 +20,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+// UTILIZES A SECRET KEY IN CONJUNCTION WITH THE CURRENT DATE AND USER INFO TO GENERATE A JSON WEB TOKEN
+
 @Component
 public class JwtTokenProvider implements Serializable{
 
