@@ -1,5 +1,6 @@
 package com.sebrenprojects.oprecipes.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,5 +32,6 @@ public class Unit{
 	private Long id;
 	
 	@NonNull
+	@Column(name="name", unique=true)
 	private String name;
 }

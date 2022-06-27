@@ -1,5 +1,8 @@
 package com.sebrenprojects.oprecipes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.sebrenprojects.oprecipes.entity.Role;
 import com.sebrenprojects.oprecipes.entity.User;
 import com.sebrenprojects.oprecipes.service.RoleServiceImpl;
 import com.sebrenprojects.oprecipes.service.UserServiceImpl;
@@ -29,6 +33,20 @@ public class OPRecipesApplication implements CommandLineRunner {
 	@Override	
 	public void run(String... args) throws Exception {
 
+		if (roleSrvc.findAll().isEmpty()) {
+			Role user = new Role();
+			Role admin = new Role();
+			
+			user.setName("USER");
+			admin.setName("ADMIN");
+			
+			List<Role> baseRoles = new ArrayList<Role>();
+			baseRoles.add(user);
+			baseRoles.add(admin);
+			
+			roleSrvc.addAll(baseRoles);
+		}
+		
 		if (userSrvc.findAll().isEmpty()) {
 			User testUser = new User();
 			

@@ -6,6 +6,9 @@ const BASE_URL_AUTH = "http://localhost:8080/api/auth";
 export const authUser = (email, password) =>axios({
     method: 'post',
     url: `${BASE_URL_AUTH}/login`,
+    headers: {
+        'Content-Type': 'application/json'
+    },
     data: {
         email: email,
         password: password
@@ -24,6 +27,9 @@ export const logout = () => {
 export const register = (username, email, password) => axios({
     method: 'post',
     url: `${BASE_URL_AUTH}/register`,
+    headers: {
+        'Content-Type': 'application/json'
+    },
     data: {
         username: username,
         email: email,

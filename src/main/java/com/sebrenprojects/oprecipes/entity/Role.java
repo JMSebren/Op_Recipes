@@ -1,5 +1,6 @@
 package com.sebrenprojects.oprecipes.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Role {
 	private Long id;
 	
 	@NonNull
+	@Column(unique = true)
 	public String name;
 
 }

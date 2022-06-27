@@ -36,9 +36,8 @@ class App extends Component{
 	
 	componentDidMount() {
 		const token = localStorage.getItem('access_token');
-		if (token != null) {
-			
-			axios.defaults.headers.common["Authorization"] = token;
+		if (token != null) {			
+			// axios.defaults.headers.common["Authorization"] = token;
 			// axios.defaults.headers.common["Content-Type"] = "application/json";
 			this.setState({loggedIn: true});
 

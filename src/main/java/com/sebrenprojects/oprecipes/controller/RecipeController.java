@@ -80,10 +80,12 @@ public class RecipeController {
 		return recipeSrvc.findAll();
 	}
 	
-	@GetMapping(value="/all", params= {"id"})
-	public List<Recipe> findAllByUser(@RequestParam Long id) {
+	@GetMapping(value="/all", params= {"email"})
+	public List<Recipe> findAllByUser(@RequestParam String email) {
 		try {
-			List<Recipe> recipes = recipeSrvc.findAllByUserId(id);
+			User user = userSrvc.findByEmail(email);
+			// was initially using just the id, but forgot to include an id in the data sent to the fe. will update later
+			List<Recipe> recipes = recipeSrvc.findAllByUserId(user.getId());
 			return recipes;
 		} catch (Exception e) {
 			e.printStackTrace();

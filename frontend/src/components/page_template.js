@@ -32,7 +32,7 @@ function Page (props) {
     } , [state.componentType]);
 
     useEffect( () => {
-        const getRecipes = async(id) => await getRecipeByUser(id)
+        const getRecipes = async(id) => await getRecipeByUser(localStorage.getItem('username'))
         .then( res => {
             setData(res.data);
             localStorage.setItem('userRecipes', JSON.stringify(res.data));
