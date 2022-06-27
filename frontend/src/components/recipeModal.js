@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addRecipe, 
          getIngredients, 
          getUnits, 
-         addIngredient,
-         getByUser } from './recipeApi';
+         addIngredient } from './recipeApi';
 import nomad from '../assets/cyber_nomad.png';
 
  const RecipeModal = ({ setRecipeIsOpen }) => {
@@ -427,11 +426,6 @@ import nomad from '../assets/cyber_nomad.png';
                     >
                         x
                     </button>
-                    {/* <button 
-                        className="absolute w-8 h-8 rounded-full -top-4 -right-4 bg-neutral-100" 
-                    >
-                        x
-                    </button> */}
                     <form id="recipe" className="flex flex-row w-full h-full mt-16" onSubmit={handleSubmit}>
                         <div id="detailsContainer" className="flex flex-col items-center w-1/4 ">
                             <fieldset className="flex flex-col items-center w-full space-y-2">

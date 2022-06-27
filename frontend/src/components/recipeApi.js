@@ -3,27 +3,9 @@ import axios from 'axios';
 const BASE_URL_RECIPE = "http://localhost:8080/api/recipe";
 const BASE_URL_INGREDIENTS = "http://localhost:8080/api/ingredients";
 
-// export const addRecipe = (name, author, cookTime, prepTime, about, steps, ingredients) => axios({
-//     url: `${BASE_URL_RECIPE}/add`,
-//     headers: {
-//         "Authorization": localStorage.getItem('access_token'),
-//         "Content-Type": "application/json"
-//     },
-//     method: 'post',
-    
-//     data: {
-//         "name": name,
-//         "author": author,
-//         "cookTime": cookTime,
-//         "prepTime": prepTime,
-//         "about": about,
-//         "steps": steps,
-//         "ingredients": ingredients
-//     },
-//     response: 'json'
-// })
 
-
+///////////////////////////////////////////////////////
+/////////////////  GET ITEMS  /////////////////////////
 export const getIngredients = () => axios ({
     url: `${BASE_URL_INGREDIENTS}/all`,
     method: 'get',
@@ -36,8 +18,8 @@ export const getUnits = () => axios ({
     response: 'json'
 })
 
-export const getByUser = (id) => axios({
-    url: `${BASE_URL_INGREDIENTS}/all`,
+export const getRecipeByUser = (id) => axios({
+    url: `${BASE_URL_RECIPE}/all`,
     method: 'get',
     params: {
         id: id
@@ -45,6 +27,15 @@ export const getByUser = (id) => axios({
     response: 'json'
 })
 
+export const getAllRecipes = () => axios({
+    url: `${BASE_URL_RECIPE}/all`,
+    method: 'get',
+    response: 'json'
+});
+
+
+///////////////////////////////////////////////////////
+///////////////  ADD NEW ITEMS  ///////////////////////
 export const addIngredient = (name) => axios ({
     url: `${BASE_URL_INGREDIENTS}/add`,
     method: 'post',
@@ -69,6 +60,9 @@ export const addRecipe = (name, author, cookTime, prepTime, about, steps, ingred
     response: 'json'
 });
 
+
+///////////////////////////////////////////////////////
+////////////////  DELETE ITEMS  ///////////////////////
 export const deleteRecipe = (id) => axios.post(
     `${BASE_URL_RECIPE}/remove`,
     {},

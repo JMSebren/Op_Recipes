@@ -1,9 +1,6 @@
 package com.sebrenprojects.oprecipes.controller;
 
 import java.util.List;
-import java.util.Set;
-
-import javax.persistence.EntityNotFoundException;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sebrenprojects.oprecipes.entity.Ingredient;
 import com.sebrenprojects.oprecipes.entity.Recipe;
-import com.sebrenprojects.oprecipes.entity.RecipeIngredient;
-import com.sebrenprojects.oprecipes.entity.RecipeStep;
+
 import com.sebrenprojects.oprecipes.entity.User;
 import com.sebrenprojects.oprecipes.service.RecipeIngredientServiceImpl;
 import com.sebrenprojects.oprecipes.service.RecipeServiceImpl;

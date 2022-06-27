@@ -63,7 +63,7 @@ class NavBar extends Component {
                     onMouseLeave={ () => this.handleOpenBurgerMenu()}
                 >
                     <Link to="/profile" state={{ componentType: 'profile' }} className="text-xl">Profile</Link>
-                    <Link to="/collections" state={{ componentType: 'collections' }} className="text-xl">Recipes</Link>
+                    {/* <Link to="/collections" state={{ componentType: 'collections' }} className="text-xl">Recipes</Link> */}
                     <Link to="/about" className="text-xl">About</Link>
                     <Link to="/" onClick={ () => this.handleLogoutClick()} className="text-xl">Sign Out</Link>
                 </div>
@@ -103,7 +103,7 @@ class NavBar extends Component {
                         </button>
                         <p className="text-2xl">{this.props.parentState.currentUser}</p>
                         <button 
-                            className="w-8 h-8 rounded-full  bg-neutral-200"
+                            className="w-8 h-8 rounded-full bg-neutral-200"
                             type="button"
                             onMouseOver={ () => this.handleOpenBurgerMenu()}
                             
