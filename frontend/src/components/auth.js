@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const BASE_URL_AUTH = "http://localhost:5000/api/auth";
-const BASE_URL_AUTH = "http://www.oprecipes.com/api/auth";
+const BASE_URL_AUTH = "http://localhost:5000/api/auth";
+// const BASE_URL_AUTH = "http://www.oprecipes.com/api/auth";
 
 //  USER LOGIN
 export const authUser = (email, password) =>axios({
