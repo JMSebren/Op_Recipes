@@ -67,7 +67,7 @@
 * Implement recipe collections
 * Add responsive design to pages
 * Learn NLP and image recognition
-* Design a systemt to read recipe images and extract relevant information.
+* Design a system to read recipe images and extract relevant information.
 
 ![Add-Recipe](Resources/Imgs/AddRecipe.png)
 
