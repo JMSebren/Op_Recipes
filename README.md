@@ -10,10 +10,10 @@
   <details>
     <summary>Table of Contents</summary>
     <ul>
-      <li><a href="about">About</a></li>
-      <li><a href="technical-specification">Technical Specification</a></li>
-      <li><a href="schema">Schema</a></li>
-      <li><a href="next-steps">Next Steps</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#technical-specification">Technical Specification</a></li>
+      <li><a href="#schema">Schema</a></li>
+      <li><a href="#next-steps">Next Steps</a></li>
     </ul>
   </details>
 
