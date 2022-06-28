@@ -27,7 +27,7 @@ import com.sebrenprojects.oprecipes.service.UnitServiceImpl;
 
 // HANDLES REQUESTS FOR INGREDIENTS AND UNITS.
 
-@CrossOrigin(origins = "http://localhost:3000") // set for testing from react launched via npm
+@CrossOrigin(origins = "*") // set for testing from react launched via npm
 @RestController
 @RequestMapping(value = "/ingredients")
 public class IngredientController {

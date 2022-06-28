@@ -41,6 +41,7 @@ public class RecipeStep {
 	private Integer stepNumber;
 	
 	@NonNull
+	@Column(unique=true)
 	private String description;
 	
 }

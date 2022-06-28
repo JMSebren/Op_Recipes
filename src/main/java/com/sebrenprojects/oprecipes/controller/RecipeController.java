@@ -28,7 +28,7 @@ import com.sebrenprojects.oprecipes.service.RecipeServiceImpl;
 import com.sebrenprojects.oprecipes.service.RecipeStepServiceImpl;
 import com.sebrenprojects.oprecipes.service.UserServiceImpl;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value ="/recipe")
 public class RecipeController {

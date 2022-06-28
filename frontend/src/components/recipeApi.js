@@ -2,8 +2,11 @@ import axios from 'axios';
 
 const token = localStorage.getItem('access_token');
 
-const BASE_URL_RECIPE = "http://localhost:8080/api/recipe";
-const BASE_URL_INGREDIENTS = "http://localhost:8080/api/ingredients";
+// const BASE_URL_RECIPE = "http://localhost:5000/api/recipe";
+// const BASE_URL_INGREDIENTS = "http://localhost:5000/api/ingredients";
+
+const BASE_URL_RECIPE = "http://www.oprecipes.com/api/recipe";
+const BASE_URL_INGREDIENTS = "http://www.oprecipes.com/api/ingredients";
 
 
 ///////////////////////////////////////////////////////

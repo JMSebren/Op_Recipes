@@ -17,7 +17,7 @@ import com.sebrenprojects.oprecipes.service.UserServiceImpl;
 // HANDLES BASIC USER REQUESTS. FOR THE MOST PART IS CURRENTLY USELESS AS USER VALIDATION AND 
 // CREATION IS HANDLED IN THE AUTH CONTROLLER.
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value="/user")
 public class UserController {

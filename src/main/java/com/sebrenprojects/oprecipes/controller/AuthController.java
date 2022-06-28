@@ -28,7 +28,7 @@ import com.sebrenprojects.oprecipes.service.UserServiceImpl;
 
 // MANAGES USER AUTHENTICATION USING JSON WEB TOKEN TO VERIFY USER CREDENTIALS.
 
-@CrossOrigin(origins = "http://localhost:3000")  // set for testing from react launched via npm
+@CrossOrigin(origins = "*")  // set for testing from react launched via npm
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,10 +45,12 @@ public class User {
 	private long id;
 	
 	@NonNull
+	@Column(unique=true)
 	private String username;
 	
 	@NonNull
 	@Email
+	@Column(unique=true)
 	private String email;
 	
 	@NonNull
