@@ -30,7 +30,7 @@
 
 <br />
 
-![home](Resources/Imgs/Home_Page.png)
+![home](Resources/Imgs/new_Home_Page.png)
 
 ## Technical Specification
 
