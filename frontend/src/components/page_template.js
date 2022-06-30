@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { getRecipeByUser } from './recipeApi';
+import { getRecipeByUser } from '../adapters/recipeApi';
 import Image from './image.js';
 import TitledImage from './titledImage.js';
 import nomad from '../assets/cyber_nomad.png';
@@ -126,7 +126,7 @@ function Page (props) {
                     
             </div>
             <div id="recipesContainer-content" 
-                 className="flex flex-row flex-wrap justify-start gap-4 p-4 overflow-y-scroll rounded-md shadow-md justify-self-end h-2/3 bg-neutral-50">
+                 className="flex flex-row flex-wrap justify-start gap-4 p-4 overflow-y-scroll rounded-md shadow-md hide-scrollbar justify-self-end h-2/3 bg-neutral-800">
                 {tImgDisplay(tImgCount)}
             </div>
         </div>
@@ -174,7 +174,7 @@ function Page (props) {
     let contentPanel;
     let bgContainer;
     if ( type === 'profile') {
-        bgContainer = bgImgContainer;
+        // bgContainer = bgImgContainer;
         detailsPanel = profileDetails;
         contentPanel = recipesContainer;
 
@@ -188,7 +188,7 @@ function Page (props) {
     }
     return (
 
-        <div className="relative flex flex-row flex-grow w-full min-h-full bg-neutral-100">
+        <div className="relative flex flex-row flex-grow w-full min-h-full bg-neutral-900">
             {bgContainer}
 
             {detailsPanel}

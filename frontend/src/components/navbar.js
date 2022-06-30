@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import title_and_logo from '../assets/title_and_logo.png';
 import logo from '../assets/logo_53.png';
-import { logout } from './auth.js';
+import newLogo from '../assets/white_logo.png';
+
+import { logout } from '../adapters/auth.js';
 
 class NavBar extends Component {
     constructor(props) {
@@ -71,29 +73,32 @@ class NavBar extends Component {
         } else {
             burgerMenu = null;
         }
-
+        // MAKE BUTTON THAT SAYS 'FOODS ME'
         
         // CONDITIONAL RENDERING FOR NAV BAR - SEARCH BAR APPEARS AND LAYOUT CHANGES WHEN USER IS LOGGED IN
         if (loggedIn) {
             // DISPLAY FOR WHEN USER IS LOGGED IN - INCLUDES SEARCH BAR, NEW RECIPE BUTTON, AND A MENU FOR OTHER LINKS
             loggedInNav = (
-                <nav className="relative flex flex-row mt-2 justify-evenly">
+                <nav className="relative top-0 z-10 flex flex-row justify-between h-16 bg-red-700">
+                    <div className="absolute z-0 w-56 h-56 bg-red-700 rounded-full -left-16 -top-16">
+                        <img src={newLogo} alt="logo" className="absolute ml-4 w-52 h-52 top-8 left-2"></img>
+                    </div>
                     
-                    <div id="nav-loggedin-left-elements" className="flex flex-row w-48 space-x-8 align-middle">
-                        <img src={logo} alt="logo" className="ml-4 "></img>
+                    <div id="nav-loggedin-left-elements" className="z-10 flex flex-row w-1/4 space-x-8 align-middle">
+                        
                         <Link
                             to="/"
-                            className="self-center w-20 h-8 mr-2 leading-8 text-center bg-gray-900 rounded-full text-neutral-100 "
+                            className="z-10 self-center w-20 h-8 ml-40 mr-2 leading-8 text-center bg-gray-900 rounded-full text-neutral-100 "
                             type="button"
                         >                            
                             Home                       
                         </Link>
                     </div>
                     
-                    <div id="nav-searchBar" className="self-center h-8 bg-gray-200 rounded-full grow">
-                        <input type="text" placeholder="Search" className="h-8 ml-4 bg-gray-200 rounded-full" ></input>
+                    <div id="nav-searchBar" className="self-center w-1/2 h-8 bg-gray-200 rounded-full grow"> 
+                        <input type="text" placeholder="Search" className="h-8 ml-6 bg-gray-200 rounded-full" ></input>
                     </div>
-                    <div id="nav-loggedin-right-elements" className="flex flex-row self-center mx-4 space-x-6">                        
+                    <div id="nav-loggedin-right-elements" className="flex flex-row self-center justify-end w-1/4 mx-4 space-x-6">                        
                         <button 
                             className="w-8 h-8 rounded-full bg-neutral-200"
                             type="button"
@@ -101,7 +106,8 @@ class NavBar extends Component {
                         >
                             +
                         </button>
-                        <p className="text-2xl">{this.props.parentState.currentUser}</p>
+                        {/* <p id="addNew" onClick={ () => this.handleRecipeModal()} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseOut}> +</p> */}
+                        <p className="text-2xl text-neutral-100">{this.props.parentState.currentUser}</p>
                         <button 
                             className="w-8 h-8 rounded-full bg-neutral-200"
                             type="button"
@@ -117,8 +123,9 @@ class NavBar extends Component {
         } else {
             // DISPLAY FOR WHEN USER HAS NOT YET LOGGED IN - INCLUDES BUTTONS FOR LOGIN AND SIGNUP
             loggedInNav = (
-                <nav className="flex flex-row justify-between mt-2">
-                    <img src={title_and_logo} alt="logo" className="ml-4 "></img>
+                <nav className="relative top-0 z-10 flex flex-row justify-between h-16 bg-red-700 ">
+                    <img src={title_and_logo} alt="logo" className="z-10 ml-4 "></img>
+                    <div className="absolute z-0 w-56 h-56 bg-red-700 rounded-full -left-24 -top-16"></div>
                     <div id="nav-notin-right-elements" className="self-center mr-12">
                         <button 
                             className="w-20 h-8 mr-2 bg-gray-900 rounded-full text-neutral-100"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addRecipe, 
          getIngredients, 
          getUnits, 
-         addIngredient } from './recipeApi';
+         addIngredient } from '../adapters/recipeApi';
 import nomad from '../assets/cyber_nomad.png';
 
  const RecipeModal = ({ setRecipeIsOpen }) => {

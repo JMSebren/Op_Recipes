@@ -70,7 +70,8 @@ public class AuthController {
 				log.info("AuthController : authenticated -> generating token");
 				log.info("{}", authorizedUser.toString());
 				String email = user.getEmail();
-				jsonObject.put("username", authentication.getName());
+				jsonObject.put("email", authentication.getName());
+				jsonObject.put("username", authorizedUser.getUsername());
 				jsonObject.put("authorities", authentication.getAuthorities());
 				jsonObject.put("access_token", tokenProvider.createToken(email, authorizedUser.getRole()));
 				if(refreshSrvc.existsByUserId(authorizedUser.getId())) {
@@ -80,6 +81,7 @@ public class AuthController {
 				
 				log.info("AuthController : authenticated -> returning token");
 				log.info(jsonObject.toString());
+
 				return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
 			}
 		} catch (JSONException e) {

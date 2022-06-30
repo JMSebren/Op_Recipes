@@ -8,5 +8,15 @@
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-    display: none
+    display: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+.pinstripe {
+    /* background: #040005; */
+    background-image: url("../assets/pinstripe-light.png");
+    background-repeat: repeat;
 }

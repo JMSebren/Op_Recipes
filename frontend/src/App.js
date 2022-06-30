@@ -25,7 +25,8 @@ class App extends Component{
 			loginIsOpen: false,
 			signUpIsOpen: false,
 			recipeIsOpen: false,
-			currentUser: localStorage.getItem('username')			
+			currentUser: localStorage.getItem('username'),
+						
 		}
 		this.handleLoginChange =  this.handleLoginChange.bind(this);
 		this.handleLoginModal = this.handleLoginModal.bind(this);

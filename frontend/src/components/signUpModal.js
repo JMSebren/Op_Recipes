@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import nomad from '../assets/cyber_nomad.png';
-import { register } from './auth.js';
+import { register } from '../adapters/auth.js';
 
 const SignUp = ({ setSignUpIsOpen }) => {
 

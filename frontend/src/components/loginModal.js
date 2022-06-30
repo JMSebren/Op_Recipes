@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import nomad from '../assets/cyber_nomad.png';
-import { authUser } from './auth.js';
+import { authUser } from '../adapters/auth.js';
 
 const Login = ({ setLoginIsOpen, updateLogin }) => {
 
@@ -20,11 +20,14 @@ const Login = ({ setLoginIsOpen, updateLogin }) => {
     // SENDS A REQUEST TO AUTHORIZE THE USER & GET A JWT TOKEN
     const response = async() => await authUser(user.email, user.password)
             .then( response => {
-                setUsername(response.data.username);
+                
                 //  STORING JWT TOKEN IN LOCALSTORAGE - THIS IS NOT TERRIBLY SECURE, AND WILL BE CHANGED LATER
                 localStorage.setItem("access_token", response.data.access_token);
                 localStorage.setItem("refresh_token", response.data.refresh_token);
                 localStorage.setItem("username",response.data.username);
+                localStorage.setItem("email",response.data.email);
+
+                setUsername(response.data.username);
             });
 
     const handleSubmit = (e) => {

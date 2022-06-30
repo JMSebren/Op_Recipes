@@ -2,6 +2,8 @@ package com.sebrenprojects.oprecipes.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -70,7 +72,7 @@ public class IngredientController {
 	
 	// CREATES A NEW INGREDIENT AND RETURNS THE PERSISTED ENTITY TO THE CALLER
 	@PostMapping("/add")
-	public ResponseEntity<?> addNewIngredient(@RequestBody Ingredient ingredient) {
+	public ResponseEntity<?> addNewIngredient(@Valid @RequestBody Ingredient ingredient) {
 		JSONObject jsonObject = new JSONObject();
 		System.out.println(ingredient.getName());
 		
