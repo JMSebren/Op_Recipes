@@ -73,7 +73,6 @@ class NavBar extends Component {
         } else {
             burgerMenu = null;
         }
-        // MAKE BUTTON THAT SAYS 'FOODS ME'
         
         // CONDITIONAL RENDERING FOR NAV BAR - SEARCH BAR APPEARS AND LAYOUT CHANGES WHEN USER IS LOGGED IN
         if (loggedIn) {
@@ -95,8 +94,8 @@ class NavBar extends Component {
                         </Link>
                     </div>
                     
-                    <div id="nav-searchBar" className="self-center w-1/2 h-8 bg-gray-200 rounded-full grow"> 
-                        <input type="text" placeholder="Search" className="h-8 ml-6 bg-gray-200 rounded-full" ></input>
+                    <div id="nav-searchBar" className="self-center w-1/2 h-10 bg-gray-100 rounded-full grow"> 
+                        <input type="text" placeholder="Search" className="h-10 ml-8 bg-gray-100 rounded-full" ></input>
                     </div>
                     <div id="nav-loggedin-right-elements" className="flex flex-row self-center justify-end w-1/4 mx-4 space-x-6">                        
                         <button 
@@ -123,9 +122,10 @@ class NavBar extends Component {
         } else {
             // DISPLAY FOR WHEN USER HAS NOT YET LOGGED IN - INCLUDES BUTTONS FOR LOGIN AND SIGNUP
             loggedInNav = (
-                <nav className="relative top-0 z-10 flex flex-row justify-between h-16 bg-red-700 ">
-                    <img src={title_and_logo} alt="logo" className="z-10 ml-4 "></img>
-                    <div className="absolute z-0 w-56 h-56 bg-red-700 rounded-full -left-24 -top-16"></div>
+                <nav className="relative top-0 z-10 flex flex-row justify-end h-16 bg-red-700 ">
+                    <div className="absolute z-0 w-56 h-56 bg-red-700 rounded-full -left-16 -top-16">
+                        <img src={newLogo} alt="logo" className="absolute ml-4 w-52 h-52 top-8 left-2"></img>
+                    </div>
                     <div id="nav-notin-right-elements" className="self-center mr-12">
                         <button 
                             className="w-20 h-8 mr-2 bg-gray-900 rounded-full text-neutral-100"
