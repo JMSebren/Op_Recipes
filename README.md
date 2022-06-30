@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://oprecipes.com">
-    <img src="/frontend/public/assets/noun-food-44237.png" width="150" height="150" font-color="white"/>
+    <img src="/frontend/src/assets/white_logo.png" width="350" height="350" />
   </a>
   
 # Op Recipes
